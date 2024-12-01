@@ -22,12 +22,12 @@ client.connect().catch((err) => {
   });
 
 
-app.use(bodyParser.json());
+  app.use(express.json());
 
 // Routes
 
 // Create a new user
-app.post("/users", async (req, res) => {
+app.post("/api/users", async (req, res) => {
   const { username, password } = req.body;
   try {
     const newUser = await createUser(username, password);
@@ -38,7 +38,7 @@ app.post("/users", async (req, res) => {
 });
 
 // Login a user
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await login(username, password);
@@ -49,7 +49,7 @@ app.post("/login", async (req, res) => {
 });
 
 // Create a new product
-app.post("/products", async (req, res) => {
+app.post("/api/products", async (req, res) => {
   const { product } = req.body;
   try {
     const newProduct = await createProduct(product);
@@ -60,7 +60,7 @@ app.post("/products", async (req, res) => {
 });
 
 // Create a new favorite
-app.post("/favorites", async (req, res) => {
+app.post("/api/favorites", async (req, res) => {
   const { product_id, user_id } = req.body;
   try {
     const newFavorite = await createFavorite(product_id, user_id);
@@ -71,7 +71,7 @@ app.post("/favorites", async (req, res) => {
 });
 
 // Fetch all users
-app.get("/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
   try {
     const users = await fetchUsers();
     res.status(200).json(users);
@@ -81,7 +81,7 @@ app.get("/users", async (req, res) => {
 });
 
 // Fetch all products
-app.get("/products", async (req, res) => {
+app.get("/api/products", async (req, res) => {
   try {
     const products = await fetchProducts();
     res.status(200).json(products);
@@ -91,7 +91,7 @@ app.get("/products", async (req, res) => {
 });
 
 // Fetch all favorites
-app.get("/favorites", async (req, res) => {
+app.get("/api/favorites", async (req, res) => {
   try {
     const favorites = await fetchFavorites();
     res.status(200).json(favorites);
@@ -101,7 +101,7 @@ app.get("/favorites", async (req, res) => {
 });
 
 // Delete a favorite
-app.delete("/favorites/:id", async (req, res) => {
+app.delete("/api/favorites/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const deletedFavorite = await destroyFavorite(id);

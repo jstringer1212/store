@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 
 const client = new pg.Client(process.env.DATABASE_URL);
 
+
 client.connect().catch((err) => console.error("Database connection error:", err));
 
 // Create tables
@@ -104,3 +105,5 @@ module.exports = {
   fetchFavorites,
   destroyFavorite,
 };
+
+createTables();
