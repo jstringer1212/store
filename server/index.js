@@ -8,21 +8,19 @@ const {
   login, 
   createProduct,
   createFavorite,
-  fetchUsers,
+  fetchUsers, 
   fetchProducts,
   fetchFavorites,
   destroyFavorite,
 } = require("./db.js"); // Adjust this to the actual file name where your database logic resides
 
 const app = express();
+const PORT = process.env.PORT;
 
-client.connect().catch((err) => {
+client.connect().catch((err) => { 
     console.error("Database connection error:", err);
   });
-  
-  app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-  });
+
 
 app.use(bodyParser.json());
 
